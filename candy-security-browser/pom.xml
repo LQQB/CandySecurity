@@ -12,5 +12,18 @@
 
     <artifactId>candy-security-browser</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.candy.security</groupId>
+            <artifactId>candy-security-core</artifactId>
+            <version>${candy.security.version}</version>
+        </dependency>
+        <!--分布式session解决方案-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

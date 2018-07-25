@@ -12,5 +12,11 @@
 
     <artifactId>candy-security-app</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.candy.security</groupId>
+            <artifactId>candy-security-core</artifactId>
+            <version>${candy.security.version}</version>
+        </dependency>
+    </dependencies>
 </project>

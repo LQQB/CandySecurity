@@ -8,5 +8,52 @@
     <artifactId>candy-security</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    
+    <properties>
+        <candy.security.version>1.0.0-SNAPSHOT</candy.security.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!--Spring IO Platform，简单的可以认为是一个依赖维护平台，-->
+                <!--该平台将相关依赖汇聚到一起，针对每个依赖，都提供了一个版本号；-->
+                <!--这些版本对应的依赖都是经过测试的，可以保证一起正常使用。-->
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>Athens-SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>../candy-security-core</module>
+        <module>../candy-security-app</module>
+        <module>../candy-security-browser</module>
+        <module>../candy-security-demo</module>
+    </modules>
+
 </project>

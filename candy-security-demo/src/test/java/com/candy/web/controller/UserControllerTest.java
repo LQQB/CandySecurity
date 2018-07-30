@@ -88,7 +88,7 @@ public class UserControllerTest {
     @Test
     public void whenUpdateSuccess() throws Exception {
         Date date = new Date();
-        String content = "{\"id\":1,\"username\":\"tom\",\"password\":null,\"birthday\":  " +(date.getTime()+1000)+" }";
+        String content = "{\"id\":1,\"username\":null,\"password\":null,\"birthday\":  " +(date.getTime()+1000)+" }";
         String result = mockMvc.perform(put("/user/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(content))

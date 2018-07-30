@@ -1,5 +1,6 @@
 package com.candy.dto;
 
+import com.candy.validator.Myconstraint;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -21,6 +22,7 @@ public class User {
 
     private int id;
 
+    @Myconstraint
     private String username;
 
     @NotBlank(message = "检查约束字符串是不是Null还有被Trim的长度是否大于0,只对字符串,且会去掉前后空格.")

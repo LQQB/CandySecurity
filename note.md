@@ -87,3 +87,9 @@ JSR303定义的校验类型
     SOURCE //源文件中保留
     CLASS //class编译时保留
     RUNTIME //运行时保留
+
+
+服务异常处理:
+    SpringBoot 默认处理机制
+
+

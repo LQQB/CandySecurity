@@ -1,6 +1,7 @@
 package com.candy.web.controller;
 
 import com.candy.dto.User;
+import com.candy.exception.UserNotExisException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -36,9 +37,15 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getUserInfo(@PathVariable String id) {
-        User user = new User();
-        user.setUsername("tom");
-        return user;
+
+//        throw new UserNotExisException(id);
+          throw new RuntimeException();
+
+//        System.out.println("进入 getUserInfo
+// () 方法");
+//        User user = new User();
+//        user.setUsername("tom");
+//        return user;
     }
 
 

@@ -4,7 +4,7 @@ import com.candy.service.HelloService;
 import org.springframework.stereotype.Service;
 
 /**
- * @author lqqqq
+ * @author LiQB
  * @Title:
  * @ProjectName CandySecurity
  * @Description: TODO

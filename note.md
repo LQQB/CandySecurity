@@ -82,14 +82,26 @@ JSR303定义的校验类型
     ElementType.LOCAL_VARIABLE //局部变量
     ElementType.ANNOTATION_TYPE //注解
     ElementType.PACKAGE //包
-
+————
 2. Retention：指明注解保留的的时间长短，取值参考枚举RetentionPolicy，一下：
     SOURCE //源文件中保留
     CLASS //class编译时保留
     RUNTIME //运行时保留
-
-
+————
 服务异常处理:
-    SpringBoot 默认处理机制
-
-
+    SpringBoot 默认处理机制， 内置了一个 BasicErrorController 对异常进行统一处理
+        BasicErrorController 提供了两种的返回错误的一种是页面返回、
+    当你是页面请求的时候就会返回页面，另外一种是json请求的时候就会返回json错误
+        @RequestMapping(produces = "text/html") 中的 produces 这个属性是对请求头中Accept
+    进行匹配，如请求头 “Accept:application/xml” 时即可匹配
+——
+RESTful API 的拦截
+    过滤器(Filter): 可以获取原始的http请求，但是拿不到请求的控制器和请求控制器中的方法的信息。
+    拦截器(Interceptor): 这个spring框架自带的拦截器，可以获取处理的Controller和
+    处理的方法，但是拿不到具体的请求参数。
+    切片(Aspect): 可以获取方法的参数，但是获取不到http请求和响应的对象
+注意：
+   SpringBoot2.0 是基于 spring 5.0 实现的。
+在Spring 5.0 中，已经将 WebMvcConfigurerAdapter 抽象类加上 @Deprecated 注解 记为过时。
+  WebMvcConfigurerAdapter  抽象类实现了 WebMvcConfigurer 接口，这里我们只需要将 extends WebMvcConfigurerAdapter  
+替换为 implements WebMvcConfigurer 即可

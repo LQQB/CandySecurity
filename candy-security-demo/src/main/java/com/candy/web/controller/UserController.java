@@ -39,13 +39,12 @@ public class UserController {
     public User getUserInfo(@PathVariable String id) {
 
 //        throw new UserNotExisException(id);
-          throw new RuntimeException();
-
-//        System.out.println("进入 getUserInfo
-// () 方法");
-//        User user = new User();
-//        user.setUsername("tom");
-//        return user;
+//          throw new RuntimeException();
+//
+        System.out.println("进入 getUserInfo() 方法");
+        User user = new User();
+        user.setUsername("tom");
+        return user;
     }
 
 

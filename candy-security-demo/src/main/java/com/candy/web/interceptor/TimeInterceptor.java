@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * @author lqqqq
+ * @author Liqb
  * @Title:
  * @ProjectName CandySecurity
  * @Description: TODO
- * @date 2018/7/3116:04
+ * @date 2018/7/31 16:04
  */
 @Component
 public class TimeInterceptor implements HandlerInterceptor {

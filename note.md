@@ -105,3 +105,14 @@ RESTful API 的拦截
 在Spring 5.0 中，已经将 WebMvcConfigurerAdapter 抽象类加上 @Deprecated 注解 记为过时。
   WebMvcConfigurerAdapter  抽象类实现了 WebMvcConfigurer 接口，这里我们只需要将 extends WebMvcConfigurerAdapter  
 替换为 implements WebMvcConfigurer 即可
+
+异步处理REST 服务
+
+使用Runnable 异步处理Rest服务
+--使用 DeferredResult异步处理Rest服务
+异步处理配置
+
+
+与前端开发并行工作
+    使用swagger自动生成html文档
+    使用WireMock快速伪造RESTful服务

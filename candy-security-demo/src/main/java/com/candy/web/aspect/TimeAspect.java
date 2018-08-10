@@ -15,8 +15,8 @@ import java.util.Arrays;
  * @Description: TODO
  * @date 2018/7/31 18:01
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class TimeAspect {
 
     @Around("execution(* com.candy.web.controller.UserController.*(..))")

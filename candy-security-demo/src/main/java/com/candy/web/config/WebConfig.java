@@ -25,7 +25,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2018/7/31 15:21
  */
-@Configuration      // 用于定义配置类，可替换xml配置文件，被注解的类内部包含有一个或多个被@Bean注解的方法
+//@Configuration      // 用于定义配置类，可替换xml配置文件，被注解的类内部包含有一个或多个被@Bean注解的方法
 public class WebConfig implements WebMvcConfigurer {
 
 

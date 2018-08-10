@@ -3,8 +3,8 @@ package com.candy.web.controller;
 import com.candy.dto.User;
 import com.candy.exception.UserNotExisException;
 import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.Api;
+//import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +23,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("user")
-@Api(description="用户控制器")
+//@Api(description="用户控制器")
 public class UserController {
 
     @GetMapping     // @GetMapping 是属于RequestMapping 的一种变形,或者说是一种子类注解,只支持Get类型的请求
     @JsonView(User.UserSimpleView.class)
-    @ApiOperation(value="获取用户列表")
+//    @ApiOperation(value="获取用户列表")
     public List<User> getQuertList(@RequestParam (defaultValue = "JOJO")String username) {             // @RequestParam 参数绑定的一种,常用来处理简单类型的绑定
         List<User> users = new ArrayList<>();
         System.out.println(username);
@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    @ApiOperation(value="获取用户详细信息")
+//    @ApiOperation(value="获取用户详细信息")
     public User getUserInfo(@PathVariable String id) {
 
 //        throw new UserNotExisException(id);

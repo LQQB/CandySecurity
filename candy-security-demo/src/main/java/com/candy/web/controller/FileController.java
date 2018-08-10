@@ -1,7 +1,7 @@
 package com.candy.web.controller;
 
 import com.candy.dto.FileInfo;
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,16 +41,16 @@ public class FileController {
         return new FileInfo(localFile.getAbsolutePath());
     }
 
-    @GetMapping("/{id}")
-    public void download(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
-
-        InputStream inputStream = new FileInputStream(new File(folder, id+".txt"));
-        OutputStream outputStream = response.getOutputStream();
-        response.setContentType("application/x-download");
-        response.addHeader("Content-Disposition", "attachment;fileName=test.txt");// 设置文件名
-
-        IOUtils.copy(inputStream, outputStream);
-        outputStream.flush();
-
-    }
+//    @GetMapping("/{id}")
+//    public void download(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//
+//        InputStream inputStream = new FileInputStream(new File(folder, id+".txt"));
+//        OutputStream outputStream = response.getOutputStream();
+//        response.setContentType("application/x-download");
+//        response.addHeader("Content-Disposition", "attachment;fileName=test.txt");// 设置文件名
+//
+//        IOUtils.copy(inputStream, outputStream);
+//        outputStream.flush();
+//
+//    }
 }

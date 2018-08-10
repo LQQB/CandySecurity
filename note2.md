@@ -3,6 +3,11 @@ SpringSecurity 开发基于表单的认证
     2. 授权( 你能干什么 )
     3. 攻击防护( 防止伪造身份 )
 
+@EnableWebSecurity, 这个注解它本身毫无用处。 必须在实现WebSecurityConfigurer的bean中配置
+Spring Security，或者（为方便起见）扩展WebSecurityConfigurerAdapter。 Spring应用程序上下
+文中实现WebSecurityConfigurer的任何bean都可以为Spring Security配置
+
+
 1.  SpringSecurity   的基本原理
     SpringSecurity 过滤器链:  当一个请求过来的时候,会经过springSecurity设置的多层的过滤器链,
            (如 UsernamePasswordAuthenticationFilter, BasicAuthenticationFilter等)一个过滤器一个过滤器往下走,

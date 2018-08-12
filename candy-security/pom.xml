@@ -23,7 +23,8 @@
                 <!--这些版本对应的依赖都是经过测试的，可以保证一起正常使用。-->
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
-                <version>Brussels-SR11</version>
+                <!--<version>Brussels-SR11</version>-->
+                <version>Brussels-SR4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

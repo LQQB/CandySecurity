@@ -1,5 +1,7 @@
-package com.candy.browser.config;
+package com.candy.browser;
 
+import com.candy.security.core.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -26,13 +31,17 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()                // 定义当用户需要登录时跳转登录页面
-                .loginPage("/candy-signIn.html")
+                .loginPage("/authentication/require")
+                .loginProcessingUrl("/authentication/form")
                 .and()
                 .authorizeRequests()    // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/candy-signIn.html").permitAll()
+                .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getLoginPage()).permitAll()
                 // antMatchers里配置的资源是可以被所有用户访问（permitAll）的
                 .anyRequest()           // 任何请求,登录后可以访问
-                .authenticated();
+                .authenticated()
+                .and().
+                csrf().disable();
     }
 
 }

@@ -1,5 +1,7 @@
-package com.candy.browser;
+package com.candy.security.browser;
 
+import com.candy.security.browser.authentication.CandyAuthenticationFailureHanler;
+import com.candy.security.browser.authentication.CandyAuthenticationSuccessHanler;
 import com.candy.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +25,12 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private CandyAuthenticationSuccessHanler candyAuthenticationSuccessHanler;
+
+    @Autowired
+    private CandyAuthenticationFailureHanler candyAuthenticationFailureHanler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -33,6 +41,8 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()                // 定义当用户需要登录时跳转登录页面
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
+                .successHandler(candyAuthenticationSuccessHanler)
+                .failureHandler(candyAuthenticationFailureHanler)
                 .and()
                 .authorizeRequests()    // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers("/authentication/require",

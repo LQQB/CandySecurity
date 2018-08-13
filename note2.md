@@ -25,8 +25,8 @@ Spring Security，或者（为方便起见）扩展WebSecurityConfigurerAdapter�
                  BCryptPasswordEncoder 类, 密码加密类
 
             个性化用户认证流程
-                自定义登录页面
-                自定义登录成功处理
+                自定义登录页面                 http.formLogin().loginPage(" 登录页面")
+                自定义登录成功处理         AuthenticationSuccessHandler
                 自定义登录失败处理
 
 2.  实现用户名 +  密码认证

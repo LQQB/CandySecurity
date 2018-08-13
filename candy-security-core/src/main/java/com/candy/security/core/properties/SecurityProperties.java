@@ -14,6 +14,8 @@ public class SecurityProperties {
 
     private BrowserProperties browser = new BrowserProperties();
 
+    private LoginType loginType = LoginType.JSON;
+
     public BrowserProperties getBrowser() {
         return browser;
     }

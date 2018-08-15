@@ -31,11 +31,32 @@ public class ImageCode {
     }
 
 
+
     public BufferedImage getImage() {
         return image;
     }
 
     public void setImage(BufferedImage image) {
         this.image = image;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public LocalDateTime getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(LocalDateTime expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public boolean isExpried() {
+        return LocalDateTime.now().isAfter(expireTime);
     }
 }

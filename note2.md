@@ -33,6 +33,15 @@ Spring Security，或者（为方便起见）扩展WebSecurityConfigurerAdapter�
 3.  实现手机号 +  短信认证
 
 
+        生成图形验证码
+
+            根据随机数生成图片
+
+            将随机数存到Session
+
+            在将生成的图片写到接口的响应里
+
+
 configur 基本配置
 
 @Configuration 	这个就是java形式的bean spring3.0以后 允许以 @Configuration 注解来代替XML形式的bean

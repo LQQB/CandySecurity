@@ -3,6 +3,7 @@ package com.candy.security.browser;
 import com.candy.security.browser.authentication.CandyAuthenticationFailureHanler;
 import com.candy.security.browser.authentication.CandyAuthenticationSuccessHanler;
 import com.candy.security.core.properties.SecurityProperties;
+import com.candy.security.core.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author LiQB
@@ -38,7 +40,11 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()                // 定义当用户需要登录时跳转登录页面
+        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        validateCodeFilter.setAuthenticationFailureHandler(candyAuthenticationFailureHanler);
+
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin()                // 定义当用户需要登录时跳转登录页面
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
                 .successHandler(candyAuthenticationSuccessHanler)
@@ -46,7 +52,7 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()    // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage()).permitAll()
+                        securityProperties.getBrowser().getLoginPage(), "/code/image").permitAll()
                 // antMatchers里配置的资源是可以被所有用户访问（permitAll）的
                 .anyRequest()           // 任何请求,登录后可以访问
                 .authenticated()

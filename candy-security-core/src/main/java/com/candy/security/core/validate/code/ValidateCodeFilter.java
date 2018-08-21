@@ -1,7 +1,7 @@
 package com.candy.security.core.validate.code;
 
+import com.candy.security.core.validate.code.image.ImageCode;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -70,7 +70,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             throw new ValidateCodeException("验证码值不能为空");
         }
 
-        if (codeInSession != null ) {
+        if (codeInSession == null ) {
             throw  new ValidateCodeException("验证码不存在");
         }
 

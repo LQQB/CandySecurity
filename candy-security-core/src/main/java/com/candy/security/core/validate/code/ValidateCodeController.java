@@ -1,92 +1,42 @@
 package com.candy.security.core.validate.code;
 
+import com.candy.security.core.properties.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Random;
 
 @RestController
 public class ValidateCodeController {
 
-    public static final String SESSION_KEY = "SESSION_KEY_IMAGE_CODE";
+    public static final String SESSION_KEY = "SESSION_KEY_FOR_CODE";
 
-    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
-
-    @GetMapping("/code/image")
-    public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ImageCode imageCode = createImageCode(request);
-        sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, imageCode);
-        ImageIO.write(imageCode.getImage(), "JPGE", response.getOutputStream());
-
-    }
-
-    /**
-     * 生成图形验证码
-     * @param request
-     * @return
-     */
-    private ImageCode createImageCode(HttpServletRequest request) {
-        int width = 64;
-        int height = 32;
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-        Graphics g = image.getGraphics();
-
-        Random random = new Random();
-
-        g.setColor(getRandColor(200, 250));
-        g.fillRect(0, 0, width, height);
-//        g.setFont(new Font("Times New Roman", Font.ITALIC, 20));
-        g.setColor(getRandColor(160, 200));
-        for (int i = 0; i < 155; i++) {
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            int xl = random.nextInt(12);
-            int yl = random.nextInt(12);
-            g.drawLine(x, y, x + xl, y + yl);
-        }
-        String sRand = "";
-        for (int i = 0; i < 4; i++) {
-            String rand = String.valueOf(random.nextInt(10));
-            sRand += rand;
-            g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
-            g.drawString(rand, 13 * i + 6, 16);
-        }
-
-        g.dispose();
-
-        return new ImageCode(image, sRand, 60);
-    }
+    @Autowired
+    private ValidateCodeProcessorHandler validateCodeProcessorHandler;
 
 
     /**
-     * 生成随机背景条纹
+     * 创建验证码，根据验证码类型不同，调用不同的 {@link ValidateCodeProcessorHandler}接口实现
      *
-     * @param fc
-     * @param bc
-     * @return
+     * @param request
+     * @param response
+     * @param type
+     * @throws Exception
      */
-    private Color getRandColor(int fc, int bc) {
-        Random random = new Random();
-        if (fc > 255) {
-            fc = 255;
-        }
-        if (bc > 255) {
-            bc = 255;
-        }
-        int r = fc + random.nextInt(bc - fc);
-        int g = fc + random.nextInt(bc - fc);
-        int b = fc + random.nextInt(bc - fc);
-        return new Color(r, g, b);
+    @GetMapping("/code" + "/{type}")
+    public void createCode(HttpServletRequest request, HttpServletResponse response,@PathVariable String type)
+            throws Exception {
+        validateCodeProcessorHandler.findValidateCodeProcessor(type).create(new ServletWebRequest(request, response));
     }
+
+
+
 
 }

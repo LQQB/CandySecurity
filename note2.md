@@ -30,16 +30,22 @@ Spring Security，或者（为方便起见）扩展WebSecurityConfigurerAdapter�
                 自定义登录失败处理
 
 2.  实现用户名 +  密码认证
+
+    生成图形验证码
+        根据随机数生成图片
+        
+        将随机数存到Session
+        
+        在将生成的图片写到接口的响应里
+    
+    @ConditionalOnMissingBean 
+        仅仅在当前上下文中不存在某个对象时，才会实例化一个Bean
+
+
 3.  实现手机号 +  短信认证
 
 
-        生成图形验证码
 
-            根据随机数生成图片
-
-            将随机数存到Session
-
-            在将生成的图片写到接口的响应里
 
 
 configur 基本配置

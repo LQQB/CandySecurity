@@ -40,8 +40,9 @@ public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
-        validateCodeFilter.setAuthenticationFailureHandler(candyAuthenticationFailureHanler);
+//        validateCodeFilter.setAuthenticationFailureHandler(candyAuthenticationFailureHanler);
 
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()                // 定义当用户需要登录时跳转登录页面

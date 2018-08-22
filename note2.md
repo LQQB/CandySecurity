@@ -75,3 +75,9 @@ expiredUrl
 
 超过session上限跳转URL设定
 
+
+
+重构
+
+1. 依赖搜索
+2. 分层封装

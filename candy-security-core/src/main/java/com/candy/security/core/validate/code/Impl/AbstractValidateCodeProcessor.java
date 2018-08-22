@@ -29,6 +29,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
 
     /**
      * 收集系统中所有的 {@link ValidateCodeGenerator} 接口的实现。
+     *      spring 特性 依赖搜索
      */
     @Autowired
     private Map<String, ValidateCodeGenerator> validateCodeGenerators;

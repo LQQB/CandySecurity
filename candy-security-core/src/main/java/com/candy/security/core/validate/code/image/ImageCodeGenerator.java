@@ -3,6 +3,7 @@ package com.candy.security.core.validate.code.image;
 import com.candy.security.core.properties.SecurityProperties;
 import com.candy.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import java.awt.*;
@@ -31,8 +32,8 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
      */
     @Override
     public ImageCode generator(ServletWebRequest request) {
-        int width = securityProperties.getCode().getImage().getWidth();
-        int height = securityProperties.getCode().getImage().getHeight();
+        int width = ServletRequestUtils.getIntParameter(request.getRequest(), "width", securityProperties.getCode().getImage().getWidth());
+        int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height", securityProperties.getCode().getImage().getHeight());
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         Graphics g = image.getGraphics();

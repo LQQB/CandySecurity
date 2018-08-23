@@ -69,3 +69,11 @@ expiredUrl
 
 超过session上限跳转URL设定
 
+
+
+@ConditionalOnMissingBean:
+它的作用就是在容器加载它作用的bean时，检查容器中是否存在目标类型
+
+重构：
+1. 分层架构
+2. 依赖搜索

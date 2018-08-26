@@ -107,9 +107,8 @@ RESTful API 的拦截
 替换为 implements WebMvcConfigurer 即可
 
 异步处理REST 服务
-
-使用Runnable 异步处理Rest服务
---使用 DeferredResult异步处理Rest服务
+-- 使用Runnable 异步处理Rest服务
+-- 使用 DeferredResult异步处理Rest服务
 异步处理配置
 
 

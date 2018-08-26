@@ -1,6 +1,7 @@
 package com.candy.security.browser;
 
 import com.candy.security.browser.authentication.CandyAuthenticationSuccessHanler;
+import com.candy.security.core.properties.SecurityConstants;
 import com.candy.security.core.properties.SecurityProperties;
 import com.candy.security.core.support.SimpleResponse;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class BrowserSecurityController {
      * @param response
      * @return
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

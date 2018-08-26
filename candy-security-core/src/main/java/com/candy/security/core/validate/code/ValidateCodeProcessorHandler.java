@@ -18,6 +18,9 @@ public class ValidateCodeProcessorHandler {
     @Autowired
     private Map<String, ValidateCodeProcessor> validateCodeProcessors;
 
+    public ValidateCodeProcessor findValidateCodeProcessor(ValidateCodeType type) {
+        return findValidateCodeProcessor(type.toString().toLowerCase());
+    }
 
     public ValidateCodeProcessor findValidateCodeProcessor(String type) {
         String name = type.toLowerCase() + ValidateCodeProcessor.class.getSimpleName();

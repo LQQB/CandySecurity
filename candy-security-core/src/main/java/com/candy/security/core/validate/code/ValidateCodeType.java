@@ -1,6 +1,6 @@
 package com.candy.security.core.validate.code;
 
-import sun.security.util.SecurityConstants;
+import com.candy.security.core.properties.SecurityConstants;
 
 /**
  * @author LiQB
@@ -17,7 +17,7 @@ public enum  ValidateCodeType {
     SMS {
         @Override
         public String getParamNameOnValidate() {
-            return "smsCode";
+            return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_SMS;
         }
     },
     /**
@@ -26,7 +26,7 @@ public enum  ValidateCodeType {
     IMAGE {
         @Override
         public String getParamNameOnValidate() {
-            return "imageCode";
+            return SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_IMAGE;
         }
     };
 

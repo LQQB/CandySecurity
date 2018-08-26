@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.session.SessionProperties;
  * @date 2018/8/1315:32
  */
 public class BrowserProperties {
-
     /**
      *  session 管理配置项
      */
@@ -21,6 +20,17 @@ public class BrowserProperties {
     private String loginPage = "/candy-signIn.html";
 
     private LoginType loginType = LoginType.JSON;
+
+    private int rememberMeSeconds = 3600;
+
+
+    public int getRememberMeSeconds() {
+        return rememberMeSeconds;
+    }
+
+    public void setRememberMeSeconds(int rememberMeSeconds) {
+        this.rememberMeSeconds = rememberMeSeconds;
+    }
 
     public LoginType getLoginType() {
         return loginType;

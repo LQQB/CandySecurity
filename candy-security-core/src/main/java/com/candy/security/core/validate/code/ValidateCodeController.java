@@ -1,9 +1,7 @@
 package com.candy.security.core.validate.code;
 
-import com.candy.security.core.properties.SecurityProperties;
+import com.candy.security.core.properties.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.connect.web.HttpSessionSessionStrategy;
-import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +9,6 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 public class ValidateCodeController {
@@ -30,7 +27,7 @@ public class ValidateCodeController {
      * @param type
      * @throws Exception
      */
-    @GetMapping("/code" + "/{type}")
+    @GetMapping(SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/{type}")
     public void createCode(HttpServletRequest request, HttpServletResponse response,@PathVariable String type)
             throws Exception {
         validateCodeProcessorHandler.findValidateCodeProcessor(type).create(new ServletWebRequest(request, response));

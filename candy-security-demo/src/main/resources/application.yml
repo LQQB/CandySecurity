@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/candy_database?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+  session:
+    store-type: none
+
+#security.basic.enabled = false
+server:
+  port: 8086
+
+#candy:
+#  security:
+#    browser:
+#      loginPage: /demo-signIn.html
+#      loginType: REDIRECT
+#    code:
+#      image:
+#        width: 300
+#        length: 6
+#        url: /user/*

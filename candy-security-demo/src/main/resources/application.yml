@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/candy_database?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/candy_database?useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
     password: 123456
 
